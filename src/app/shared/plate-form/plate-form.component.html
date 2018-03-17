@@ -1,0 +1,70 @@
+<!-- Incluir novalidate cuando queramos que la gestión de las validacions la lleve angular -->
+<form #form="ngForm" novalidate>
+
+  <mat-form-field>
+    <input
+    matInput
+    ngModel 
+    name="name" 
+    required 
+    minlength="4" 
+    placeholder="Name"
+    #name="ngModel">
+    <mat-error *ngIf="name?.errors?.required">Campo Requerido</mat-error>
+    <mat-error *ngIf="name?.errors?.minlength">Faltan caracteres</mat-error>    
+  </mat-form-field>
+
+  <mat-form-field >
+    <input
+     matInput
+     ngModel
+     placeholder="Description"  
+     required
+     minlength="10"
+     maxlength="20"
+     name="description" 
+     #description="ngModel"
+     >
+     <mat-error *ngIf="description?.errors?.required">Campo Requerido</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+     matInput
+     placeholder="Image"
+     required
+     url>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput
+     type="number"
+     placeholder="Num.Ingredients">
+  </mat-form-field>
+
+  <mat-checkbox>Celiac?</mat-checkbox>
+
+  <!-- <select name="" id="">
+    <option *ngFor="let category of categories" [value]="category">
+      {{ category}}
+    </option>
+  </select> -->
+
+  <mat-form-field>
+    <mat-select placeholder="Category">
+      <mat-option *ngFor="let category of categories" [value]="category">
+        {{ category}}
+      </mat-option>
+    </mat-select> 
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="Create...">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <button mat-button [disabled]="!form.valid">Save</button>
+
+
+</form>

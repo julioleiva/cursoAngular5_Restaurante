@@ -33,14 +33,17 @@
     </li>
 </ul> -->
 
-<res-plate shadow size="100px" [color]="even ? 'blue' : 'red'" *ngFor="let item of items | sort:sortField:'DESC'; let even = even;" [plate]="item" 
+<res-plate-form></res-plate-form>
+
+<res-plate shadow size="10px" [color]="even ? 'blue' : 'red'" *ngFor="let item of items | sort:sortField:'DESC'; let even = even;" [plate]="item" 
             (delete)="onDeletePlate($event)"
             (edit)="onEditPlate($event)"
             (shadowMouseLeave)="onShadowMouseLeave()"
 ></res-plate>
+<br>
 
-<button (click)="sortField = 'name'">Name</button>
-<button (click)="sortField='numIngredients'">Ingredients</button>
+<button (click)="sortField = 'name'">Name</button><br>
+<button (click)="sortField='numIngredients'">Ingredients</button><br>
 
 
 <button (click)="onClick()">Change ingredients</button>

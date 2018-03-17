@@ -1,5 +1,5 @@
 import { PlateService } from './services/plate.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import Plate from './models/plate.model';
 
 @Component({
@@ -9,15 +9,21 @@ import Plate from './models/plate.model';
 })
 
 
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   public value = 3;
 
   items = [];
   
-  // En el constructor 
+  // En el constructor se lleva a cabo la inyección de dependencias
   constructor(private plateService: PlateService){
+  }
 
+  // El ngOnInit Se ejecuta después del constructor
+  // Marcamos este método como asícrono para gestionar la promesa de la respuesta
+  async ngOnInit(){
+    // 
+    this.items = await this.plateService.getAll();
   }
 
 onDeletePlate(plate) {
