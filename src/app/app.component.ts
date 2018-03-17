@@ -1,3 +1,4 @@
+import { PlateService } from './services/plate.service';
 import { Component } from '@angular/core';
 import Plate from './models/plate.model';
 
@@ -12,62 +13,13 @@ export class AppComponent {
 
   public value = 3;
 
-  items: Plate [] =  [
-    {
-    name: 'Lasaña',
-    description: 'A la boloñesa',
-    createdAt: new Date(),
-    celiac: true,
-    numIngredients: 8,
-    category: 'Pasta',
-    image: 'https://www.gallinablanca.es/files/thumbs/6fa65995f2dbca95536d431c7f8527c2f5a20694_r900_480_2.jpg',
-  },
-  {
-    name: 'Zamora',
-    description: 'A la boloñesa',
-    createdAt: new Date(),
-    celiac: true,
-    numIngredients: 8,
-    category: 'Pasta',
-    image: 'https://www.gallinablanca.es/files/thumbs/6fa65995f2dbca95536d431c7f8527c2f5a20694_r900_480_2.jpg',
-  },
-  {
-    name: 'Llammmm',
-    description: 'A la boloñesa',
-    createdAt: new Date(),
-    celiac: true,
-    numIngredients: 8,
-    category: 'Pasta',
-    image: 'https://www.gallinablanca.es/files/thumbs/6fa65995f2dbca95536d431c7f8527c2f5a20694_r900_480_2.jpg',
-  },
-  {
-    name: 'MiPrima',
-    description: 'A la boloñesa',
-    createdAt: new Date(),
-    celiac: true,
-    numIngredients: 8,
-    category: 'Pasta',
-    image: 'https://www.gallinablanca.es/files/thumbs/6fa65995f2dbca95536d431c7f8527c2f5a20694_r900_480_2.jpg',
-  },
-  {
-    name: 'MeCagoenTusMuelas',
-    description: 'A la boloñesa',
-    createdAt: new Date(),
-    celiac: true,
-    numIngredients: 8,
-    category: 'Pasta',
-    image: 'https://www.gallinablanca.es/files/thumbs/6fa65995f2dbca95536d431c7f8527c2f5a20694_r900_480_2.jpg',
-  },
-  {
-    name: 'HastaLuego',
-    description: 'A la boloñesa',
-    createdAt: new Date(),
-    celiac: true,
-    numIngredients: 8,
-    category: 'Pasta',
-    image: 'https://www.gallinablanca.es/files/thumbs/6fa65995f2dbca95536d431c7f8527c2f5a20694_r900_480_2.jpg',
+  items = [];
+  
+  // En el constructor 
+  constructor(private plateService: PlateService){
+
   }
-];
+
 onDeletePlate(plate) {
   console.log('delete', plate);
 }
@@ -78,12 +30,13 @@ onShadowMouseLeave() {
   console.log('Leave');
 }
 onClick() {
-  this.items.map( plate => {
-    if (plate.name = 'HastaLuego') {
-      return Object.assign({}, plate, {numIngredients: 25});
+
+  this.items = this.items.map(plate => {
+    if (plate.name === 'Zamburiñas') {
+      return Object.assign({}, plate, {numIngredients: 10});
     }
     return plate;
-  });
+  })
   this.items[0].numIngredients = 10;
 }
 
